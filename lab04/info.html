@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color:  #FFC0CB;;
+            text-align: center;
+        }
+        .header {
+            background-color: rgba(128, 0, 128, 0.925);
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 248, 220, 0.644);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .book-image {
+            width: 250px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .book-title {
+            font-size: 24px;
+            margin-top: 15px;
+        }
+        .book-info {
+            font-size: 18px;
+            color: #555;
+            margin: 10px 0;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">Book Information</div>
+    <div class="container" id="book-details">
+        <img id="book-image" class="book-image" src="" alt="Book Cover">
+        <h2 id="book-title" class="book-title"></h2>
+        <p id="book-author" class="book-info"></p>
+        <p id="book-year" class="book-info"></p>
+        <p id="book-description" class="book-info"></p>
+        <a href="indexpart2.html" class="back-button">Back to Home</a>
+    </div>
+
+    <script>
+        const books = {
+            'gatsby': {
+                title: "The Great Gatsby",
+                author: "F. Scott Fitzgerald",
+                year: "1925",
+                description: "A novel about the American dream and high society in the 1920s.",
+                image: "https://m.media-amazon.com/images/I/61ViLiAK64L.jpg"
+            },
+            'mockingbird': {
+                title: "To Kill a Mockingbird",
+                author: "Harper Lee",
+                year: "1960",
+                description: "A novel that deals with serious issues like racial inequality and injustice.",
+                image: "https://cdn.bookey.app/files/book/1701405238000.png"
+            },
+            '1984': {
+                title: "Pride and Prejudice",
+                author: "Jane Austen",
+                year: "1813",
+                description: "A dystopian novel about totalitarian government surveillance and control.",
+                image: "https://img.drz.lazcdn.com/static/pk/p/90e81bdf9ae4dc970511c3d101e87105.jpg_960x960q80.jpg_.webp"
+            }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const bookKey = params.get('book');
+
+        if (books[bookKey]) {
+            document.getElementById("book-title").innerText = books[bookKey].title;
+            document.getElementById("book-author").innerText = "Author: " + books[bookKey].author;
+            document.getElementById("book-year").innerText = "Published: " + books[bookKey].year;
+            document.getElementById("book-description").innerText = books[bookKey].description;
+            document.getElementById("book-image").src = books[bookKey].image;
+        } else {
+            document.getElementById("book-details").innerHTML = "<h2>Book not found</h2><a href='index.html' class='back-button'>Back to Home</a>";
+        }
+    </script>
+</body>
+</html>
